@@ -1,95 +1,82 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
+import Navigation from "../components/Navigation";
 
 export default function Home() {
+  const [username, setUsername] = useState("");
+  const router = useRouter();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (username.trim()) {
+      router.push(`/report/${username}`);
+    }
+  };
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
+      <div className={styles.heroBackground}></div>
+      <Navigation />
+
+      <section className={`animate-fade-in ${styles.hero}`}>
+        <div className={styles.heroLeft}>
+          <div className={styles.stackedHeadline}>
+            <span className="text-neon">DEV</span>
+            <span className="text-hollow">INSIGHT</span>
+            <span className="text-hollow">V2.0</span>
+          </div>
+          
+          <p className={styles.heroSubtitle}>
+            Stop guessing who the best developers are. Analyze GitHub behavioral patterns, consistency, and problem-solving depth to reveal real engineering talent.
+          </p>
+
+          <form onSubmit={handleSearch} className={styles.searchContainer}>
+            <input 
+              type="text" 
+              placeholder="Enter GitHub Username..." 
+              className={styles.searchInput}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <button type="submit" className={styles.searchButton}>
+              Analyze
+            </button>
+          </form>
+        </div>
+
+        <div className={styles.heroRight}>
+           <Image
+              src="/hero-graphic.png"
+              alt="Developer Architecture Hologram"
+              width={600}
+              height={600}
+              className={styles.heroImage}
               priority
             />
-          </a>
         </div>
-      </div>
+      </section>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <section className={`animate-fade-in ${styles.featuresSection}`} style={{ animationDelay: "0.2s" }}>
+        <div className={`${styles.featureCard} ${styles.pinkCard}`}>
+          <div className={styles.featureIndex}>01.</div>
+          <h3>Authenticity<br/>Engine</h3>
+          <p>Detect true engineering talent and problem-solving skills versus purely AI-generated code over extended timelines.</p>
+        </div>
+        <div className={`${styles.featureCard} ${styles.limeCard}`}>
+          <div className={styles.featureIndex}>02.</div>
+          <h3>Growth<br/>Trajectory</h3>
+          <p>Track developer evolution by analyzing commit complexity and project scope expansion dynamically.</p>
+        </div>
+        <div className={`${styles.featureCard} ${styles.purpleCard}`}>
+          <div className={styles.featureIndex}>03.</div>
+          <h3>Technical<br/>Depth</h3>
+          <p>Map out full developer maturity and holistic systems thinking beyond standard language syntax limits.</p>
+        </div>
+      </section>
     </main>
   );
 }
