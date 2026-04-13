@@ -1,0 +1,30 @@
+"use client";
+
+import Link from "next/link";
+import styles from "../app/page.module.css";
+
+export default function Navigation() {
+  return (
+    <div className={styles.navContainer}>
+      <nav className={styles.navBar}>
+        <div className={styles.navLogo}>
+          <div className={styles.navLogoIcon}>D</div>
+          DevInsight
+        </div>
+        
+        <div className={styles.navLinks}>
+          <Link href="#" className={styles.navLink}>Home</Link>
+          <Link href="#" className={styles.navLink}>About Us</Link>
+          <Link href="#" className={styles.navLink}>Mission</Link>
+          <Link href="#" className={styles.navLink}>Technology</Link>
+        </div>
+        
+        <div className={styles.navActions}>
+          <button className={styles.ctaButton}>
+            Contact Us
+          </button>
+        </div>
+      </nav>
+    </div>
+  );
+}
