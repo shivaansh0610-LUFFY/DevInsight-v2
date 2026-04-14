@@ -18,10 +18,10 @@
 
 .hero {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
   padding: 10rem 4rem 4rem;
-  max-width: 1300px;
+  max-width: 1600px;
   margin: 0 auto;
   min-height: 90vh;
   gap: 2rem;
@@ -222,7 +222,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
@@ -235,13 +235,32 @@
   color: #FFF;
   font-size: 0.9rem;
   font-weight: 600;
-  transition: color 0.2s ease;
+  transition: color 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
 }
 
 .navLink:hover {
   color: var(--primary);
+}
+
+.navLink:hover::after {
+  width: 100%;
 }
 
 .navLogo {
