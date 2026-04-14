@@ -9,7 +9,7 @@ export default function Navigation() {
       <nav className={styles.navBar}>
         <div className={styles.navLogo}>
           <div className={styles.navLogoIcon}>D</div>
-          DevInsight
+          DevInSight
         </div>
         
         <div className={styles.navLinks}>
