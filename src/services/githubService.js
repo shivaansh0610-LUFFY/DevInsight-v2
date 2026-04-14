@@ -3,13 +3,19 @@ export async function fetchGitHubData(username) {
   const headers = token ? { Authorization: `token ${token}` } : {};
 
   try {
-    // Fetch basic profile
-    const profileRes = await fetch(`https://api.github.com/users/${username}`, { headers });
+    // Fetch basic profile with 24-hour cache
+    const profileRes = await fetch(`https://api.github.com/users/${username}`, { 
+      headers,
+      next: { revalidate: 86400 } // 24 hours
+    });
     if (!profileRes.ok) throw new Error("User not found or API limit reached.");
     const profile = await profileRes.json();
 
-    // Fetch repos (limit to 100 for speed)
-    const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=pushed`, { headers });
+    // Fetch repos (limit to 100 for speed) with 24-hour cache
+    const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=pushed`, { 
+      headers,
+      next: { revalidate: 86400 } // 24 hours
+    });
     let repos = [];
     if (reposRes.ok) {
       repos = await reposRes.json();
