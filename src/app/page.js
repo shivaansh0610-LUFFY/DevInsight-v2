@@ -121,6 +121,17 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Footer Section */}
+      <footer className={styles.footer}>
+        <div className={styles.footerContent}>
+          <div className={styles.footerLogo}>
+            <span className={styles.footerLogoIcon}>D</span> DevInSight
+          </div>
+          <p className={styles.footerText}>
+            &copy; {new Date().getFullYear()} The Zero Bugs Club. All rights reserved.
+          </p>
+        </div>
+      </footer>
 
     </main>
   );
