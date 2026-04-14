@@ -77,6 +77,47 @@ export default function Home() {
           <p>Map out full developer maturity and holistic systems thinking beyond standard language syntax limits.</p>
         </div>
       </section>
+
+      {/* About Us Manifesto */}
+      <section id="about" className={styles.aboutSection}>
+        <span className={styles.manifestoLabel}>Who Are We?</span>
+        <h2 className={styles.manifestoHeadline}>
+          <span className="text-hollow">We Are The </span><br />
+          <span className="text-neon">Zero Bugs Club</span>
+        </h2>
+        <p className={styles.manifestoText}>
+          The era of generic resumes and easily gamed keyword filters is over. We built DevInsight to rip past the fluff and measure <span className={styles.manifestoHighlight}>raw engineering horsepower</span>. By aggressively analyzing GitHub commit cadence, stack expansion, and problem-solving timelines, we expose who the true 10x builders are.
+        </p>
+      </section>
+
+      {/* Technology Architecture Section */}
+      <section id="technology" className={styles.techSection}>
+        <div className={styles.techHeader}>
+          <h2 className={styles.techTitle}>The Intelligence <span className="text-hollow">Stack</span></h2>
+          <p className={styles.techSubtitle}>How we process thousands of commits in milliseconds.</p>
+        </div>
+
+        <div className={styles.techGrid}>
+          <div className={`${styles.techPillar} ${styles.pillar1}`}>
+            <div className={styles.techIconWrapper}>📡</div>
+            <h3>Data Ingestion</h3>
+            <p>We leverage native GraphQL APIs to securely parse 365-day user contribution topologies and raw repository dependency arrays.</p>
+          </div>
+          
+          <div className={`${styles.techPillar} ${styles.pillar2}`}>
+            <div className={styles.techIconWrapper}>🧠</div>
+            <h3>AI Processing Core</h3>
+            <p>Custom inference mapping passes syntax trees through an advanced Language Model to determine behavioral problem solving capabilities.</p>
+          </div>
+
+          <div className={`${styles.techPillar} ${styles.pillar3}`}>
+            <div className={styles.techIconWrapper}>⚡</div>
+            <h3>Realtime Output</h3>
+            <p>Our React DOM Matrix dynamically visualizes the computed intelligence cohorts into a high performance "bento box" analytic dashboard.</p>
+          </div>
+        </div>
+      </section>
+
     </main>
   );
 }

@@ -13,10 +13,9 @@ export default function Navigation() {
         </div>
         
         <div className={styles.navLinks}>
-          <Link href="#" className={styles.navLink}>Home</Link>
-          <Link href="#" className={styles.navLink}>About Us</Link>
-          <Link href="#" className={styles.navLink}>Mission</Link>
-          <Link href="#" className={styles.navLink}>Technology</Link>
+          <Link href="/" className={styles.navLink}>Home</Link>
+          <Link href="#about" className={styles.navLink}>About Us</Link>
+          <Link href="#technology" className={styles.navLink}>Technology</Link>
         </div>
         
         <div className={styles.navActions}>

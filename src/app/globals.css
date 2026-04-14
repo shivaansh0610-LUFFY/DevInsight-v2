@@ -31,6 +31,10 @@
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--background);
   background-image: radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.15), transparent 40%),
