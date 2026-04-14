@@ -20,7 +20,7 @@ export default function Navigation() {
         
         <div className={styles.navActions}>
           <button className={styles.ctaButton}>
-            Contact Us
+            Request Invite
           </button>
         </div>
       </nav>
