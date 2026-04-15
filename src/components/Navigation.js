@@ -1,9 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import styles from "../app/page.module.css";
+import WaitlistModal from "./WaitlistModal";
 
 export default function Navigation() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className={styles.navContainer}>
       <nav className={styles.navBar}>
@@ -19,11 +22,19 @@ export default function Navigation() {
         </div>
         
         <div className={styles.navActions}>
-          <button className={styles.ctaButton}>
+          <button 
+            className={styles.ctaButton}
+            onClick={() => setIsModalOpen(true)}
+          >
             Request Invite
           </button>
         </div>
       </nav>
+
+      <WaitlistModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   );
 }
