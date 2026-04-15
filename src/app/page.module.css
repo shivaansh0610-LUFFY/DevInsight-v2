@@ -276,14 +276,9 @@
 .navLogoIcon {
   width: 2.5rem;
   height: 2.5rem;
-  background: var(--primary);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000;
-  font-size: 1.25rem;
-  font-weight: 900;
 }
 
 .navActions {
@@ -519,15 +514,11 @@
 }
 
 .footerLogoIcon {
-  background: var(--primary);
-  color: #000;
   width: 1.8rem;
   height: 1.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  font-size: 0.9rem;
 }
 
 .footerText {

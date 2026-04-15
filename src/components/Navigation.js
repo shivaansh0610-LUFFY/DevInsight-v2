@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "../app/page.module.css";
 import WaitlistModal from "./WaitlistModal";
 
@@ -11,7 +12,15 @@ export default function Navigation() {
     <div className={styles.navContainer}>
       <nav className={styles.navBar}>
         <div className={styles.navLogo}>
-          <div className={styles.navLogoIcon}>D</div>
+          <div className={styles.navLogoIcon}>
+            <Image 
+              src="/logo.png" 
+              alt="DevInsight Logo" 
+              width={40} 
+              height={40} 
+              style={{ objectFit: 'contain' }}
+            />
+          </div>
           DevInSight
         </div>
         

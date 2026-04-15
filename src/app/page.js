@@ -138,7 +138,16 @@ export default function Home() {
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <div className={styles.footerLogo}>
-            <span className={styles.footerLogoIcon}>D</span> DevInSight
+            <div className={styles.footerLogoIcon}>
+              <Image 
+                src="/logo.png" 
+                alt="DevInsight Logo" 
+                width={30} 
+                height={30} 
+                style={{ objectFit: 'contain' }}
+              />
+            </div>
+            DevInSight
           </div>
           <p className={styles.footerText}>
             &copy; {new Date().getFullYear()} The Zero Bugs Club. All rights reserved.
