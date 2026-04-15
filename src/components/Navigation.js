@@ -3,11 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import styles from "../app/page.module.css";
 import WaitlistModal from "./WaitlistModal";
 
 export default function Navigation() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
   return (
     <div className={styles.navContainer}>
       <nav className={styles.navBar}>
@@ -26,8 +30,8 @@ export default function Navigation() {
         
         <div className={styles.navLinks}>
           <Link href="/" className={styles.navLink}>Home</Link>
-          <Link href="#about" className={styles.navLink}>About Us</Link>
-          <Link href="#technology" className={styles.navLink}>Technology</Link>
+          <Link href={isHomePage ? "#about" : "/#about"} className={styles.navLink}>About Us</Link>
+          <Link href={isHomePage ? "#technology" : "/#technology"} className={styles.navLink}>Technology</Link>
         </div>
         
         <div className={styles.navActions}>
