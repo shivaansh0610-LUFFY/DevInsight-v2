@@ -4,8 +4,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "DevInsight v2 | Developer Authenticity & Behavior Analysis",
-  description: "Evaluate developers based on behavior, consistency, growth, and engineering maturity. Uncover real engineering talent beyond raw code.",
+  title: "DevInsight v2 | The Zero Bugs Club Intelligence Matrix",
+  description: "Advanced engineering forensics to reveal raw developer horsepower. Analyze consistency, growth, and authenticity via AI-powered semantic processing.",
 };
 
 export default function RootLayout({ children }) {
