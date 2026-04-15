@@ -196,6 +196,27 @@ export default function DashboardClient({ data }) {
             </div>
           </motion.div>
         </div>
+
+        {/* Dashboard Footer */}
+        <footer className={styles.footer}>
+          <div className={styles.footerContent}>
+            <div className={styles.footerLogo}>
+              <div className={styles.footerLogoIcon}>
+                <Image 
+                  src="/logo.png" 
+                  alt="DevInsight Logo" 
+                  width={24} 
+                  height={24} 
+                  style={{ objectFit: 'contain' }}
+                />
+              </div>
+              DevInSight
+            </div>
+            <p className={styles.footerText}>
+              &copy; {new Date().getFullYear()} The Zero Bugs Club. All rights reserved.
+            </p>
+          </div>
+        </footer>
       </motion.div>
     </div>
   );
