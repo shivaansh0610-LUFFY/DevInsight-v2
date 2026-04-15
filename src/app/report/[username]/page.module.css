@@ -185,6 +185,12 @@
 .consistencyCard { grid-column: span 12; }
 @media (min-width: 1024px) { .consistencyCard { grid-column: span 8; } }
 
+.distributionCard { grid-column: span 12; }
+@media (min-width: 1024px) { .distributionCard { grid-column: span 4; } }
+
+.momentumCard { grid-column: span 12; }
+@media (min-width: 1024px) { .momentumCard { grid-column: span 8; } }
+
 /* Language Distribution */
 .langList {
   display: flex;

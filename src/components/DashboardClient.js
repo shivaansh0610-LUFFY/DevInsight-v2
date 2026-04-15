@@ -9,6 +9,8 @@ import AnimatedCounter from "./AnimatedCounter";
 import CursorGlow from "./CursorGlow";
 
 const TechRadar = dynamic(() => import("./TechRadar"), { ssr: false });
+const EngineeringMomentum = dynamic(() => import("./EngineeringMomentum"), { ssr: false });
+const StackDistribution = dynamic(() => import("./StackDistribution"), { ssr: false });
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -194,6 +196,32 @@ export default function DashboardClient({ data }) {
                 ))}
               </div>
             </div>
+          </motion.div>
+
+          {/* Engine 5: Stack Distribution */}
+          <motion.div variants={itemVariants} className={`${styles.card} ${styles.distributionCard}`}>
+            <div className={styles.cardHeader}>
+              <div className={styles.cardIcon}>📊</div>
+              <h3 className={styles.cardTitle}>Stack Distribution</h3>
+            </div>
+            <div className={styles.distributionContent}>
+              <p style={{color: '#888', fontSize: '0.9rem', textAlign: 'center', marginBottom: '1rem'}}>Technology Core Composition</p>
+              <StackDistribution languages={data.languages} />
+            </div>
+          </motion.div>
+
+          {/* Engine 6: Momentum Chart */}
+          <motion.div variants={itemVariants} className={`${styles.card} ${styles.momentumCard}`}>
+            <div className={styles.cardHeader}>
+              <div className={styles.cardIcon}>📈</div>
+              <h3 className={styles.cardTitle}>Engineering Momentum</h3>
+            </div>
+            
+            <p style={{color: '#888', fontSize: '0.9rem', marginBottom: '1rem'}}>
+              Weekly Activity Velocity Tracking (Last 52 Weeks)
+            </p>
+            
+            <EngineeringMomentum heatmap={data.heatmap} />
           </motion.div>
         </div>
 
