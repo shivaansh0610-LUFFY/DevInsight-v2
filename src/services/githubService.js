@@ -1,3 +1,5 @@
+import { analyzeDeveloperProfile } from "./aiService";
+
 export async function fetchGitHubData(username) {
   const token = process.env.GITHUB_TOKEN;
   const headers = token ? { Authorization: `token ${token}` } : {};
@@ -31,10 +33,16 @@ export async function fetchGitHubData(username) {
       }
     });
 
-    // Mocking out deeper commit parsing since full commit history traversal exceeds standard API limits quickly
-    // In production we would use GitHub GraphQL API for the exact contribution calendar
-    // Here we generate simulated commit heatmap activity based on repo pushes for demonstration
-    const heatmap = generateHeatmapActivity(repos);
+    // Fetch Real Contribution Heatmap via GraphQL
+    let heatmap = await fetchGraphQLData(username, token);
+    
+    // Fallback to simulation if GraphQL fails or token is missing
+    if (!heatmap) {
+      heatmap = generateHeatmapActivity(repos);
+    }
+
+    // Run the actual AI Analysis from our AI Core
+    const aiAnalysis = await analyzeDeveloperProfile(profile, repos, languages);
 
     return {
       profile,
@@ -49,11 +57,63 @@ export async function fetchGitHubData(username) {
       })),
       languages,
       totalStars,
-      heatmap
+      heatmap,
+      aiAnalysis
     };
   } catch (error) {
     console.error("GitHub fetch error:", error);
     throw error;
+  }
+}
+
+async function fetchGraphQLData(username, token) {
+  if (!token) return null;
+  
+  const query = `
+    query($username: String!) {
+      user(login: $username) {
+        contributionsCollection {
+          contributionCalendar {
+            weeks {
+              contributionDays {
+                contributionCount
+                date
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const res = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query, variables: { username } }),
+      next: { revalidate: 86400 } // 24 hours
+    });
+
+    const result = await res.json();
+    if (result.errors || !result.data?.user) return null;
+
+    const days = [];
+    result.data.user.contributionsCollection.contributionCalendar.weeks.forEach(week => {
+      week.contributionDays.forEach(day => {
+        days.push({
+          date: day.date,
+          count: day.contributionCount
+        });
+      });
+    });
+    
+    return days;
+  } catch (error) {
+    console.error("GraphQL Fetch Error:", error);
+    return null;
   }
 }
 
