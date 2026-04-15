@@ -3,22 +3,35 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { AnimatePresence } from "framer-motion";
 import styles from "./page.module.css";
 import Navigation from "../components/Navigation";
+import TerminalLoader from "../components/TerminalLoader";
 
 export default function Home() {
   const [username, setUsername] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (username.trim()) {
-      router.push(`/report/${username}`);
+      const targetUser = username.trim();
+      setIsLoading(targetUser);
+      
+      // Artificial delay to allow the "Hero Experience" terminal to finish its sequence
+      setTimeout(() => {
+        router.push(`/report/${targetUser}`);
+      }, 5500); 
     }
   };
 
   return (
     <main className={styles.main}>
+      <AnimatePresence>
+        {isLoading && <TerminalLoader user={isLoading} />}
+      </AnimatePresence>
+      
       <div className={styles.heroBackground}></div>
       <Navigation />
 
@@ -116,7 +129,7 @@ export default function Home() {
             <div className={`${styles.techPillar} ${styles.pillar3}`}>
               <div className={styles.techIconWrapper}>⚡</div>
               <h3>Realtime Output</h3>
-              <p>Our React DOM Matrix dynamically visualizes the computed intelligence cohorts into a high performance "bento box" analytic dashboard.</p>
+              <p>Our React DOM Matrix dynamically visualizes the computed intelligence cohorts into a high performance &quot;bento box&quot; analytic dashboard.</p>
             </div>
           </div>
         </div>
